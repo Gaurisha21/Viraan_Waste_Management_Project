@@ -1,2 +1,4 @@
-Training Dataset for Biodegradable and Non - Biodegradable Waste:
-https://drive.google.com/drive/folders/1U91g5zowbJoXwNeh9WswYI95pzpVHran?usp=sharing
+Training Dataset for Glass, Compost, Plastic, Paper, Metal Waste:
+https://drive.google.com/drive/folders/1vEgRegoHNcI0LB9waqjVOeW2AFzVj2hc?usp=sharing
+
+Source: Kaggle
