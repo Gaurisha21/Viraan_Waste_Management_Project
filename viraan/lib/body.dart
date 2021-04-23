@@ -8,29 +8,41 @@ class Body extends StatelessWidget {
       children: [
         Image.asset("assets/images/logo.png"),
         SizedBox(
-          height: 15.0,
+          height: 10.0,
         ),
         Image.asset("assets/images/VIRAAN.png"),
-        SizedBox(
-          height: 15.0,
+        // SizedBox(
+        //   height: 10.0,
+        // ),
+        Image.asset(
+          "assets/images/tree.png",
+          height: 450.0,
         ),
-        Image.asset("assets/images/tree.png"),
         Container(
           padding: EdgeInsets.only(left: 50.0, right: 50.0),
           child: Row(
             children: [
               IconButton(
-                icon: Image.asset("assets/icons/home.png"),
+                icon: Image.asset(
+                  "assets/icons/home.png",
+                  color: Color(0xFF4E4A4A),
+                ),
                 onPressed: () {},
               ),
               Spacer(),
               IconButton(
-                icon: Image.asset("assets/icons/cart.png"),
+                icon: Image.asset(
+                  "assets/icons/cart.png",
+                  color: Color(0xFF4E4A4A),
+                ),
                 onPressed: () {},
               ),
               Spacer(),
               IconButton(
-                icon: Image.asset("assets/icons/Vector.png"),
+                icon: Image.asset(
+                  "assets/icons/Vector.png",
+                  color: Color(0xFF4E4A4A),
+                ),
               ),
             ],
           ),
