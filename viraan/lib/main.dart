@@ -4,6 +4,13 @@ import 'Login.dart';
 import 'WatchYourWaste.dart';
 import 'Loading.dart';
 import 'SignUp.dart';
+import 'SellWaste.dart';
+import 'EmptyCart.dart';
+import 'Plastic.dart';
+import 'Metal.dart';
+import 'Glass.dart';
+import 'KitchenWaste.dart';
+import 'Paper.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +27,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFEED8C1),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignUp(),
+      home: Paper(),
     );
   }
 }
