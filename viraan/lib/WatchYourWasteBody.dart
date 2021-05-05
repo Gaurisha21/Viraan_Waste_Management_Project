@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:viraan/KitchenWaste.dart';
+import 'package:viraan/Loading.dart';
+import 'package:viraan/Paper.dart';
 import 'home_screen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:viraan/Cart.dart';
 import 'package:viraan/Rewards.dart';
 import 'home_screen.dart';
+import 'package:tflite/tflite.dart';
+import 'package:viraan/Plastic.dart';
+import 'package:viraan/Metal.dart';
+import 'KitchenWaste.dart';
+import 'Glass.dart';
+
 
 class WatchYourWasteBody extends StatefulWidget {
   @override
@@ -116,6 +125,49 @@ class WatchYourWasteHeader extends StatefulWidget {
 
 class _WatchYourWasteHeaderState extends State<WatchYourWasteHeader> {
   PickedFile _image;
+  bool _loading = true;
+  List _output;
+  @override
+  void initState(){
+    super.initState();
+    loadModel().then((value){
+      setState(() { });
+    });
+    }
+  @override
+  void dispose(){
+    super.dispose();
+    Tflite.close();
+  }
+  classifyImage(File image) async {
+    var output = await Tflite.runModelOnImage(
+      path: image.path,
+      numResults: 36,
+      threshold: 0.5,
+      imageMean: 127.5,
+      imageStd: 127.5,
+    );
+    setState(() {
+      _loading = false;
+      _output = output;
+      print(_output);
+      var material;
+      if(_output.isEmpty)
+        {
+          material = "";
+        }
+      else {
+        material = _output[0]['label'];
+      }
+    pageCall(material);
+    });
+  }
+  loadModel() async {
+    await Tflite.loadModel(
+      model: "assets/WasteClassification.tflite",
+      labels: "assets/labels.txt",
+    );
+  }
   _imgFromCamera() async {
     ImagePicker imagePicker = ImagePicker();
     final imageFile = await imagePicker.getImage(source: ImageSource.camera);
@@ -126,6 +178,7 @@ class _WatchYourWasteHeaderState extends State<WatchYourWasteHeader> {
     setState(() {
       _image = imageFile;
     });
+    classifyImage(File(_image.path));
   }
 
   _imgFromGallery() async {
@@ -138,6 +191,52 @@ class _WatchYourWasteHeaderState extends State<WatchYourWasteHeader> {
     setState(() {
       _image = imageFile;
     });
+    classifyImage(File(_image.path));
+  }
+  void pageCall(String material)
+  {
+    if(material == "paper")
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Paper()),
+      );
+    }
+    else if( material == "plastic")
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Plastic()),
+      );
+    }
+    else if( material == "metal")
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Metal()),
+      );
+    }
+    else if( material == "glass")
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Glass()),
+      );
+    }
+    else if( material == "compost")
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => KitchenWaste()),
+      );
+    }
+    else
+      {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Loading()),
+        );
+      }
   }
   void _showPicker(context) {
     showModalBottomSheet(
@@ -210,8 +309,7 @@ class _WatchYourWasteHeaderState extends State<WatchYourWasteHeader> {
             //   height: 200,
             //   child: Image.asset("assets/images/Camera.png"),
             // ),
-            child : _image==null?
-           TextButton.icon(
+            child :TextButton.icon(
 
               onPressed: () {
                 _showPicker(context);
@@ -221,7 +319,6 @@ class _WatchYourWasteHeaderState extends State<WatchYourWasteHeader> {
                   // File image = await ImagePicker.pickImage(
                   //     source: ImageSource.camera, imageQuality: 50
                   // );
-
                   setState(() {
                     if (imageFile != null) {
                       _image = PickedFile(imageFile.path);
@@ -252,12 +349,12 @@ class _WatchYourWasteHeaderState extends State<WatchYourWasteHeader> {
                 '',
               ),
             )
-                : Image.file(
-              File(_image.path),
-              height: 80.0,
-              width: 100.0,
-
-            ),
+            //     : Image.file(
+            //   File(_image.path),
+            //   height: 80.0,
+            //   width: 100.0,
+            //
+            // ),
             // ): image: DecorationImage(image: FileImage(File(file.path)),)
           ),
           Positioned(
@@ -282,4 +379,3 @@ class _WatchYourWasteHeaderState extends State<WatchYourWasteHeader> {
     );
   }
 }
-

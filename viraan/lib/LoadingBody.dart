@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:viraan/WatchYourWaste.dart';
 
 class LoadingBody extends StatelessWidget {
   @override
@@ -19,6 +20,12 @@ class LoadingBody extends StatelessWidget {
                   Icons.arrow_back_ios,
                   color: Color(0xFF000000),
                 ),
+                onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WatchYourWaste()),
+                  );
+                },
               ),
             ),
           ),
@@ -31,13 +38,17 @@ class LoadingBody extends StatelessWidget {
           SizedBox(
             height: 30.0,
           ),
-          Text(
-            'Processing your waste',
-            style: TextStyle(
-                color: Color(0xFF000000),
-                fontFamily: 'Nunito',
-                fontWeight: FontWeight.bold,
-                fontSize: 25.0),
+          Center(
+            child: Text(
+              'Oops!'
+                  ' Your waste can\'t be processed',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Color(0xFF000000),
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25.0),
+            ),
           )
         ],
       ),

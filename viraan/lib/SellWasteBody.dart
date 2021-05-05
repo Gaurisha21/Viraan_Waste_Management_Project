@@ -4,6 +4,7 @@ import 'package:viraan/home_screen.dart';
 import 'home_screen.dart';
 import 'package:viraan/Cart.dart';
 import 'package:viraan/Rewards.dart';
+import 'package:viraan/SellWaste.dart';
 
 class SellWasteBody extends StatelessWidget {
   @override
@@ -278,10 +279,9 @@ class _DropDownMenuState extends State<DropDownMenu> {
                 value: value,
                 child: Row(
                   children:<Widget> [
-
-
+                    Text(value),
                   ],
-                  // Text(value),
+
                 ),);
             }).toList(),
             hint: Text(
@@ -295,6 +295,10 @@ class _DropDownMenuState extends State<DropDownMenu> {
             onChanged: (String value) {
               setState(() {
                 _chosenValue = value;
+                return showDialog(context: context,
+                    builder: (BuildContext context){
+                    return alertDialog();
+                    });
               });
             },
           ),
@@ -363,6 +367,35 @@ class SellWasteHeader extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+class alertDialog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text("Tell us what it is called?"),
+      content: TextField(
+        decoration: InputDecoration(
+            // border: InputBorder.none,
+            // labelText: 'Enter Name',
+            // hintText: 'Enter Your Name'
+        ),
+      ),
+      actions: [
+        FlatButton(
+          child: Text('Add to Cart'),
+          color: Colors.blueAccent,
+          textColor: Colors.white,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SellWaste()),
+            );
+          },
+        ),
+
+      ],
     );
   }
 }

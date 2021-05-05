@@ -159,13 +159,13 @@ class CartItems extends StatelessWidget {
                         ),
                       ],
                     ),
-                    // trailing: GestureDetector(
-                    //   child: Icon(
-                    //     Icons.remove_circle,
-                    //     color: Color(0xFFD1A985),
-                    //     size: 30.0,
-                    //   ),
-                    // ),
+                    trailing: GestureDetector(
+                      child: Icon(
+                        Icons.remove_circle,
+                        color: Color(0xFFD1A985),
+                        size: 30.0,
+                      ),
+                    ),
                   ),
                 ),
                 Card(
@@ -192,13 +192,13 @@ class CartItems extends StatelessWidget {
                         ),
                       ],
                     ),
-                    // trailing: GestureDetector(
-                    //   child: Icon(
-                    //     Icons.remove_circle,
-                    //     color: Color(0xFFD1A985),
-                    //     size: 30.0,
-                    //   ),
-                    // ),
+                    trailing: GestureDetector(
+                      child: Icon(
+                        Icons.remove_circle,
+                        color: Color(0xFFD1A985),
+                        size: 30.0,
+                      ),
+                    ),
                   ),
                 ),
                 Card(
@@ -225,13 +225,13 @@ class CartItems extends StatelessWidget {
                         ),
                       ],
                     ),
-                    // trailing: GestureDetector(
-                    //   child: Icon(
-                    //     Icons.remove_circle,
-                    //     color: Color(0xFFD1A985),
-                    //     size: 30.0,
-                    //   ),
-                    // ),
+                    trailing: GestureDetector(
+                      child: Icon(
+                        Icons.remove_circle,
+                        color: Color(0xFFD1A985),
+                        size: 30.0,
+                      ),
+                    ),
                   ),
                 ),
                 Card(
@@ -258,13 +258,13 @@ class CartItems extends StatelessWidget {
                         ),
                       ],
                     ),
-                    // trailing: GestureDetector(
-                    //   child: Icon(
-                    //     Icons.remove_circle,
-                    //     color: Color(0xFFD1A985),
-                    //     size: 30.0,
-                    //   ),
-                    // ),
+                    trailing: GestureDetector(
+                      child: Icon(
+                        Icons.remove_circle,
+                        color: Color(0xFFD1A985),
+                        size: 30.0,
+                      ),
+                    ),
                   ),
                 ),
                 Card(
@@ -291,13 +291,13 @@ class CartItems extends StatelessWidget {
                         ),
                       ],
                     ),
-                    // trailing: GestureDetector(
-                    //   child: Icon(
-                    //     Icons.remove_circle,
-                    //     color: Color(0xFFD1A985),
-                    //     size: 30.0,
-                    //   ),
-                    // ),
+                    trailing: GestureDetector(
+                      child: Icon(
+                        Icons.remove_circle,
+                        color: Color(0xFFD1A985),
+                        size: 30.0,
+                      ),
+                    ),
                   ),
                 ),
                 Card(
@@ -324,13 +324,13 @@ class CartItems extends StatelessWidget {
                         ),
                       ],
                     ),
-                    // trailing: GestureDetector(
-                    //   child: Icon(
-                    //     Icons.remove_circle,
-                    //     color: Color(0xFFD1A985),
-                    //     size: 30.0,
-                    //   ),
-                    // ),
+                    trailing: GestureDetector(
+                      child: Icon(
+                        Icons.remove_circle,
+                        color: Color(0xFFD1A985),
+                        size: 30.0,
+                      ),
+                    ),
                   ),
                 ),
                 Card(
@@ -357,13 +357,13 @@ class CartItems extends StatelessWidget {
                         ),
                       ],
                     ),
-                    // trailing: GestureDetector(
-                    //   child: Icon(
-                    //     Icons.remove_circle,
-                    //     color: Color(0xFFD1A985),
-                    //     size: 30.0,
-                    //   ),
-                    // ),
+                    trailing: GestureDetector(
+                      child: Icon(
+                        Icons.remove_circle,
+                        color: Color(0xFFD1A985),
+                        size: 30.0,
+                      ),
+                    ),
                   ),
                 ),
                 Card(
