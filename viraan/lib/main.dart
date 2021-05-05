@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'WatchYourWaste.dart';
 import 'home_screen.dart';
 import 'Login.dart';
 import 'WatchYourWaste.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFEED8C1),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Rewards(),
+      home: Login(),
     );
   }
 }

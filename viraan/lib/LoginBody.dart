@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'SignUp.dart';
+import 'body.dart';
+import 'SignUp.dart';
+import 'home_screen.dart';
 
 class LoginBody extends StatelessWidget {
   @override
@@ -11,7 +15,12 @@ class LoginBody extends StatelessWidget {
         color: Color(0xFF3CB371),
         minWidth: 380.0,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+          );
+        },
         child: Text(
           "Login",
           textAlign: TextAlign.center,
@@ -63,17 +72,25 @@ class LoginBody extends StatelessWidget {
           SizedBox(
             height: 25.0,
           ),
-          loginWithGoogle,
+          // WithGoogle,login
           SizedBox(
             height: 15.0,
           ),
-          Text(
-            'Don\'t have an account? Sign Up',
-            style: TextStyle(
-              color: Color(0xFF8A8787),
-              fontFamily: 'Nunito',
-              fontSize: 16.0,
+          TextButton(
+            child: Text(
+              'Don\'t have an account? Sign Up',
+              style: TextStyle(
+                color: Color(0xFF8A8787),
+                fontFamily: 'Nunito',
+                fontSize: 16.0,
+              ),
             ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SignUp()),
+              );
+            },
           ),
         ],
       ),
@@ -164,16 +181,16 @@ class LoginBody extends StatelessWidget {
             ),
             child: Image.asset("assets/images/LOGIN.png"),
           ),
-          Positioned(
-            bottom: 0,
-            left: 20.0,
-            right: 0,
-            child: Container(
-              alignment: Alignment.centerLeft,
-              height: 270.0,
-              child: Icon(Icons.arrow_back_ios_outlined),
-            ),
-          ),
+          // Positioned(
+          //   bottom: 0,
+          //   left: 20.0,
+          //   right: 0,
+          //   child: Container(
+          //     alignment: Alignment.centerLeft,
+          //     height: 270.0,
+          //     child: Icon(Icons.arrow_back_ios_outlined),
+          //   ),
+          // ),
           Positioned(
             bottom: 0,
             left: 20.0,

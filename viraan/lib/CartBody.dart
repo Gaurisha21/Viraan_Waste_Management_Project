@@ -1,6 +1,45 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:viraan/WatchYourWaste.dart';
+import 'package:viraan/home_screen.dart';
+import 'package:viraan/Rewards.dart';
+import 'package:viraan/Cart.dart';
+import 'package:viraan/SellWaste.dart';
+import 'package:flutter_cart/flutter_cart.dart';
+class CartModel {
+  var message;
 
+  /// Creating the instance of flutter cart package.
+  var cart = FlutterCart();
+
+  /// sample function
+  addToCart(dynamic _product) => {
+    message = cart.addToCart(
+        productId: _product.productId,
+        unitPrice: _product.productPrice,
+        quantity: _product.quantity,
+
+        ///[uniqueCheck] is used to differentiate the type between item
+        ///[e.g] the shirt sizes in (LARGE, MEDIUM, SMALL) the [Product ID] will remain same
+        ///But if UUID is not present so, how we can differentiate between them? So in this case we will
+        ///User the uniqueCheck
+        uniqueCheck: _product.selectedProductType,
+
+        ///[productDetailsObject] is used as a dump variable you can dump your object and any kind of data
+        ///that you wanted use in future.
+        productDetailsObject: _product),
+  };
+
+  /// This function is used to decrement the item quantity from cart
+  removeItemFromCart(int index) => {
+    cart.decrementItemFromCart(index),
+  };
+
+  /// This function is used to increment the item quantity into cart
+  addItemToCart(int index) {
+    cart.incrementItemToCart(index);
+  }
+}
 class CartBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -36,7 +75,12 @@ class FooterCart extends StatelessWidget {
               "assets/icons/home.png",
               color: Color(0xFF4E4A4A),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeScreen()),
+              );
+            },
           ),
           Spacer(),
           IconButton(
@@ -44,7 +88,12 @@ class FooterCart extends StatelessWidget {
               "assets/icons/cart.png",
               color: Color(0xFF4E4A4A),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Cart()),
+              );
+            },
           ),
           Spacer(),
           IconButton(
@@ -52,6 +101,12 @@ class FooterCart extends StatelessWidget {
               "assets/icons/Vector.png",
               color: Color(0xFF4E4A4A),
             ),
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Rewards()),
+              );
+            },
           ),
         ],
       ),
@@ -104,13 +159,13 @@ class CartItems extends StatelessWidget {
                         ),
                       ],
                     ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFFD1A985),
-                        size: 30.0,
-                      ),
-                    ),
+                    // trailing: GestureDetector(
+                    //   child: Icon(
+                    //     Icons.remove_circle,
+                    //     color: Color(0xFFD1A985),
+                    //     size: 30.0,
+                    //   ),
+                    // ),
                   ),
                 ),
                 Card(
@@ -137,13 +192,13 @@ class CartItems extends StatelessWidget {
                         ),
                       ],
                     ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFFD1A985),
-                        size: 30.0,
-                      ),
-                    ),
+                    // trailing: GestureDetector(
+                    //   child: Icon(
+                    //     Icons.remove_circle,
+                    //     color: Color(0xFFD1A985),
+                    //     size: 30.0,
+                    //   ),
+                    // ),
                   ),
                 ),
                 Card(
@@ -170,13 +225,13 @@ class CartItems extends StatelessWidget {
                         ),
                       ],
                     ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFFD1A985),
-                        size: 30.0,
-                      ),
-                    ),
+                    // trailing: GestureDetector(
+                    //   child: Icon(
+                    //     Icons.remove_circle,
+                    //     color: Color(0xFFD1A985),
+                    //     size: 30.0,
+                    //   ),
+                    // ),
                   ),
                 ),
                 Card(
@@ -203,13 +258,13 @@ class CartItems extends StatelessWidget {
                         ),
                       ],
                     ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFFD1A985),
-                        size: 30.0,
-                      ),
-                    ),
+                    // trailing: GestureDetector(
+                    //   child: Icon(
+                    //     Icons.remove_circle,
+                    //     color: Color(0xFFD1A985),
+                    //     size: 30.0,
+                    //   ),
+                    // ),
                   ),
                 ),
                 Card(
@@ -236,13 +291,13 @@ class CartItems extends StatelessWidget {
                         ),
                       ],
                     ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFFD1A985),
-                        size: 30.0,
-                      ),
-                    ),
+                    // trailing: GestureDetector(
+                    //   child: Icon(
+                    //     Icons.remove_circle,
+                    //     color: Color(0xFFD1A985),
+                    //     size: 30.0,
+                    //   ),
+                    // ),
                   ),
                 ),
                 Card(
@@ -269,13 +324,13 @@ class CartItems extends StatelessWidget {
                         ),
                       ],
                     ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFFD1A985),
-                        size: 30.0,
-                      ),
-                    ),
+                    // trailing: GestureDetector(
+                    //   child: Icon(
+                    //     Icons.remove_circle,
+                    //     color: Color(0xFFD1A985),
+                    //     size: 30.0,
+                    //   ),
+                    // ),
                   ),
                 ),
                 Card(
@@ -302,13 +357,13 @@ class CartItems extends StatelessWidget {
                         ),
                       ],
                     ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFFD1A985),
-                        size: 30.0,
-                      ),
-                    ),
+                    // trailing: GestureDetector(
+                    //   child: Icon(
+                    //     Icons.remove_circle,
+                    //     color: Color(0xFFD1A985),
+                    //     size: 30.0,
+                    //   ),
+                    // ),
                   ),
                 ),
                 Card(
@@ -335,13 +390,13 @@ class CartItems extends StatelessWidget {
                         ),
                       ],
                     ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFFD1A985),
-                        size: 30.0,
-                      ),
-                    ),
+                    // trailing: GestureDetector(
+                    //   child: Icon(
+                    //     Icons.remove_circle,
+                    //     color: Color(0xFFD1A985),
+                    //     size: 30.0,
+                    //   ),
+                    // ),
                   ),
                 ),
               ],
@@ -393,10 +448,10 @@ class CartHeader extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.arrow_back_ios_outlined),
-                  SizedBox(
-                    height: 40.0,
-                  ),
+                  // Icon(Icons.arrow_back_ios_outlined),
+                  // SizedBox(
+                  //   height: 40.0,
+                  // ),
                   Padding(
                     padding: const EdgeInsets.only(right: 10.0),
                     child: Row(
@@ -410,7 +465,16 @@ class CartHeader extends StatelessWidget {
                           ),
                         ),
                         Spacer(),
-                        Icon(Icons.arrow_forward_ios),
+                        // IconButton(Icons.arrow_forward_ios),
+                        IconButton(
+                          icon: Icon(Icons.arrow_forward_ios),
+                          onPressed:() {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => SellWaste()),
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ),

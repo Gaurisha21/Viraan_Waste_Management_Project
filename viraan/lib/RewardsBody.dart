@@ -38,7 +38,7 @@ class RewardsBody extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(Icons.arrow_back_ios_outlined),
+                        // Icon(Icons.arrow_back_ios_outlined),
                         SizedBox(
                           height: 40.0,
                         ),

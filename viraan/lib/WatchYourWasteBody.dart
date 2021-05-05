@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import 'home_screen.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'package:viraan/Cart.dart';
+import 'package:viraan/Rewards.dart';
+import 'home_screen.dart';
 
-class WatchYourWasteBody extends StatelessWidget {
+class WatchYourWasteBody extends StatefulWidget {
+  @override
+  _WatchYourWasteBodyState createState() => _WatchYourWasteBodyState();
+}
+
+class _WatchYourWasteBodyState extends State<WatchYourWasteBody> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -28,7 +39,7 @@ class WatchYourWasteBody extends StatelessWidget {
                       ),
                       ListTile(
                         title: Text(
-                            '3 .Viraan will segregate your waste into either plastic,glass,paper,kitchen waste,metals.'),
+                            '3 .Viraan will segregate your waste into either plastic, glass, paper, kitchen waste, metals.'),
                       ),
                       ListTile(
                         title: Text(
@@ -49,7 +60,12 @@ class WatchYourWasteBody extends StatelessWidget {
                     "assets/icons/home.png",
                     color: Color(0xFF4E4A4A),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                    );
+                  },
                 ),
                 Spacer(),
                 IconButton(
@@ -57,7 +73,12 @@ class WatchYourWasteBody extends StatelessWidget {
                     "assets/icons/cart.png",
                     color: Color(0xFF4E4A4A),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Cart()),
+                    );
+                  },
                 ),
                 Spacer(),
                 IconButton(
@@ -65,6 +86,12 @@ class WatchYourWasteBody extends StatelessWidget {
                     "assets/icons/Vector.png",
                     color: Color(0xFF4E4A4A),
                   ),
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Rewards()),
+                    );
+                  },
                 ),
               ],
             ),
@@ -75,7 +102,7 @@ class WatchYourWasteBody extends StatelessWidget {
   }
 }
 
-class WatchYourWasteHeader extends StatelessWidget {
+class WatchYourWasteHeader extends StatefulWidget {
   const WatchYourWasteHeader({
     Key key,
     @required this.size,
@@ -84,13 +111,72 @@ class WatchYourWasteHeader extends StatelessWidget {
   final Size size;
 
   @override
+  _WatchYourWasteHeaderState createState() => _WatchYourWasteHeaderState();
+}
+
+class _WatchYourWasteHeaderState extends State<WatchYourWasteHeader> {
+  PickedFile _image;
+  _imgFromCamera() async {
+    ImagePicker imagePicker = ImagePicker();
+    final imageFile = await imagePicker.getImage(source: ImageSource.camera);
+    // File image = await ImagePicker.pickImage(
+    //     source: ImageSource.camera, imageQuality: 50
+    // );
+
+    setState(() {
+      _image = imageFile;
+    });
+  }
+
+  _imgFromGallery() async {
+    ImagePicker imagePicker = ImagePicker();
+    final imageFile = await imagePicker.getImage(source: ImageSource.gallery);
+    // File image = await  ImagePicker.pickImage(
+    //     source: ImageSource.gallery, imageQuality: 50
+    // );
+
+    setState(() {
+      _image = imageFile;
+    });
+  }
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Photo Library'),
+                      onTap: () {
+                        _imgFromGallery();
+                        Navigator.of(context).pop();
+                      }),
+                  new ListTile(
+                    leading: new Icon(Icons.photo_camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      _imgFromCamera();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+    );
+  }
+  @override
   Widget build(BuildContext context) {
     return Container(
-      height: size.height * 0.5,
+      height: widget.size.height * 0.5,
       child: Stack(
         children: [
           Container(
-            height: size.height * 0.5,
+            height: widget.size.height * 0.5,
             width: double.infinity,
             padding: EdgeInsets.only(
               left: 20.0,
@@ -112,18 +198,67 @@ class WatchYourWasteHeader extends StatelessWidget {
             child: Container(
               alignment: Alignment.centerLeft,
               height: 270.0,
-              child: Icon(Icons.arrow_back_ios_outlined),
+              // child: Icon(Icons.arrow_back_ios_outlined),
             ),
           ),
           Positioned(
-            bottom: 0,
+            bottom: 60, //TODO: position
             left: 0,
             right: 0,
-            child: Container(
-              alignment: Alignment.center,
-              height: 200,
-              child: Image.asset("assets/images/Camera.png"),
+            // child: Container(ho
+            //   alignment: Alignment.center,
+            //   height: 200,
+            //   child: Image.asset("assets/images/Camera.png"),
+            // ),
+            child : _image==null?
+           TextButton.icon(
+
+              onPressed: () {
+                _showPicker(context);
+                _imgFromCamera() async {
+                  ImagePicker imagePicker = ImagePicker();
+                  final imageFile = await imagePicker.getImage(source: ImageSource.camera);
+                  // File image = await ImagePicker.pickImage(
+                  //     source: ImageSource.camera, imageQuality: 50
+                  // );
+
+                  setState(() {
+                    if (imageFile != null) {
+                      _image = PickedFile(imageFile.path);
+                    } else {
+                      print('No image selected.');
+                    }
+                  });
+                }
+
+                _imgFromGallery() async {
+                  ImagePicker imagePicker = ImagePicker();
+                  final imageFile = await imagePicker.getImage(source: ImageSource.gallery);
+                  // File image = await  ImagePicker.pickImage(
+                  //     source: ImageSource.gallery, imageQuality: 50
+                  // );
+
+                  setState(() {
+                    if (imageFile != null) {
+                      _image = PickedFile(imageFile.path);
+                    } else {
+                      print('No image selected.');
+                    }
+                  });
+                }
+              },
+              icon: Image.asset("assets/images/Camera.png"),
+              label: Text(
+                '',
+              ),
+            )
+                : Image.file(
+              File(_image.path),
+              height: 80.0,
+              width: 100.0,
+
             ),
+            // ): image: DecorationImage(image: FileImage(File(file.path)),)
           ),
           Positioned(
             bottom: 0,
@@ -147,3 +282,4 @@ class WatchYourWasteHeader extends StatelessWidget {
     );
   }
 }
+

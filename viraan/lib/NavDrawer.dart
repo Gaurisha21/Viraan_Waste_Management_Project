@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:viraan/WatchYourWaste.dart';
+import 'package:viraan/SellWaste.dart';
+import 'package:viraan/Rewards.dart';
+import 'package:viraan/Cart.dart';
 
 class NavDrawer extends StatelessWidget {
   @override
@@ -18,35 +22,55 @@ class NavDrawer extends StatelessWidget {
               ),
             ),
           ),
-          ListTile(
-            leading: Icon(Icons.input),
-            title: Text('Login'),
-            onTap: () => {},
-          ),
-          ListTile(
-            leading: Icon(Icons.assignment_ind),
-            title: Text('Sign Up'),
-            onTap: () => {Navigator.of(context).pop()},
-          ),
+          // ListTile(
+          //   leading: Icon(Icons.input),
+          //   title: Text('Login'),
+          //   onTap: () => {},
+          // ),
+          // ListTile(
+          //   leading: Icon(Icons.assignment_ind),
+          //   title: Text('Sign Up'),
+          //   onTap: () => {Navigator.of(context).pop()},
+          // ),
           ListTile(
             leading: Icon(Icons.article),
             title: Text('Scan Waste'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => WatchYourWaste()),
+            )
+            },
           ),
           ListTile(
             leading: Icon(Icons.auto_delete_sharp),
             title: Text('Sell Waste'),
-            onTap: () => {},
+            onTap: () => {
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SellWaste()),
+            )
+            },
           ),
           ListTile(
             leading: Icon(Icons.auto_awesome),
             title: Text('Rewards'),
-            onTap: () => {},
+            onTap: () => {
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Rewards()),
+            )
+            },
           ),
           ListTile(
             leading: Icon(Icons.shopping_cart),
             title: Text('Cart'),
-            onTap: () => {},
+            onTap: () => {
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Cart()),
+            )
+            },
           ),
         ],
       ),

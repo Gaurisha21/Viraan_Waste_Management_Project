@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'home_screen.dart';
 
 class SignUpBody extends StatelessWidget {
   @override
@@ -11,9 +12,14 @@ class SignUpBody extends StatelessWidget {
         color: Color(0xFF3CB371),
         minWidth: 380.0,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomeScreen()),
+          );
+        },
         child: Text(
-          "Sign up With Google",
+          "Sign Up",
           textAlign: TextAlign.center,
           style: TextStyle(
               color: Colors.white,
@@ -94,6 +100,7 @@ class SignUpBody extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(left: 20.0, right: 20.0),
       child: TextField(
+        keyboardType: TextInputType.emailAddress,
         cursorColor: Color(0xFF8A8787),
         decoration: new InputDecoration(
           enabledBorder: UnderlineInputBorder(
