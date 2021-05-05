@@ -1,45 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:viraan/EmptyCartBody.dart';
 import 'package:viraan/WatchYourWaste.dart';
 import 'package:viraan/home_screen.dart';
 import 'package:viraan/Rewards.dart';
 import 'package:viraan/Cart.dart';
 import 'package:viraan/SellWaste.dart';
 import 'package:flutter_cart/flutter_cart.dart';
-class CartModel {
-  var message;
+import 'package:viraan/models/CartModel.dart';
+import 'package:velocity_x/velocity_x.dart';
 
-  /// Creating the instance of flutter cart package.
-  var cart = FlutterCart();
+import 'EmptyCart.dart';
 
-  /// sample function
-  addToCart(dynamic _product) => {
-    message = cart.addToCart(
-        productId: _product.productId,
-        unitPrice: _product.productPrice,
-        quantity: _product.quantity,
 
-        ///[uniqueCheck] is used to differentiate the type between item
-        ///[e.g] the shirt sizes in (LARGE, MEDIUM, SMALL) the [Product ID] will remain same
-        ///But if UUID is not present so, how we can differentiate between them? So in this case we will
-        ///User the uniqueCheck
-        uniqueCheck: _product.selectedProductType,
-
-        ///[productDetailsObject] is used as a dump variable you can dump your object and any kind of data
-        ///that you wanted use in future.
-        productDetailsObject: _product),
-  };
-
-  /// This function is used to decrement the item quantity from cart
-  removeItemFromCart(int index) => {
-    cart.decrementItemFromCart(index),
-  };
-
-  /// This function is used to increment the item quantity into cart
-  addItemToCart(int index) {
-    cart.incrementItemToCart(index);
-  }
-}
 class CartBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -114,7 +87,7 @@ class FooterCart extends StatelessWidget {
   }
 }
 
-class CartItems extends StatelessWidget {
+class CartItems extends StatefulWidget {
   const CartItems({
     Key key,
     @required this.size,
@@ -123,290 +96,346 @@ class CartItems extends StatelessWidget {
   final Size size;
 
   @override
+  _CartItemsState createState() => _CartItemsState();
+}
+
+class _CartItemsState extends State<CartItems> {
+  final CartModel _cart = CartModel();
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 10.0, right: 10.0),
       child: Container(
-        height: size.height * 0.5,
+        height: widget.size.height * 0.5,
         child: ScrollConfiguration(
           behavior: ScrollBehavior(),
           child: GlowingOverscrollIndicator(
             axisDirection: AxisDirection.down,
             color: Color(0xFFD1A985),
-            child: ListView(
-              children: [
-                Card(
-                  color: Color(0xFFE8CAAB),
-                  elevation: 4.0,
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.auto_awesome,
-                      color: Color(0xFF4E4A4A),
+
+
+            child: (_cart.cart.cartItem.length == 0) ? Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => EmptyCart()),
+            ) : ListView.builder(
+              itemCount: _cart.cart.cartItem.length,
+              itemBuilder: (context, index) => Card(
+              color: Color(0xFFE8CAAB),
+              elevation: 4.0,
+              child: ListTile(
+                leading: Icon(
+                  Icons.auto_awesome,
+                  color: Color(0xFF4E4A4A),
+                ),
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      _cart.cart.cartItem[index].productDetails.waste_name,
+                      style: TextStyle(fontFamily: 'Nunito'),
                     ),
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Plastic Bottle',
-                          style: TextStyle(fontFamily: 'Nunito'),
-                        ),
-                        Text(
-                          'Plastic',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFFD1A985),
-                        size: 30.0,
+                    Text(
+                      _cart.cart.cartItem[index].productDetails.waste_type,
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 12.0,
                       ),
                     ),
-                  ),
+                  ],
                 ),
-                Card(
-                  color: Color(0xFFE8CAAB),
-                  elevation: 4.0,
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.auto_awesome,
-                      color: Color(0xFF4E4A4A),
-                    ),
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Notebook',
-                          style: TextStyle(fontFamily: 'Nunito'),
-                        ),
-                        Text(
-                          'Paper',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFFD1A985),
-                        size: 30.0,
-                      ),
-                    ),
+                trailing: GestureDetector(
+                  child: Icon(
+                    Icons.remove_circle,
+                    color: Color(0xFFD1A985),
+                    size: 30.0,
                   ),
+                  onTap:  (){
+                    _cart.cart.decrementItemFromCart(index);
+                    setState(() {
+
+                    });
+                  },
                 ),
-                Card(
-                  color: Color(0xFFE8CAAB),
-                  elevation: 4.0,
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.auto_awesome,
-                      color: Color(0xFF4E4A4A),
-                    ),
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Iron rod',
-                          style: TextStyle(fontFamily: 'Nunito'),
-                        ),
-                        Text(
-                          'Metal',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFFD1A985),
-                        size: 30.0,
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  color: Color(0xFFE8CAAB),
-                  elevation: 4.0,
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.auto_awesome,
-                      color: Color(0xFF4E4A4A),
-                    ),
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Iron stand',
-                          style: TextStyle(fontFamily: 'Nunito'),
-                        ),
-                        Text(
-                          'Metal',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFFD1A985),
-                        size: 30.0,
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  color: Color(0xFFE8CAAB),
-                  elevation: 4.0,
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.auto_awesome,
-                      color: Color(0xFF4E4A4A),
-                    ),
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Iron rod',
-                          style: TextStyle(fontFamily: 'Nunito'),
-                        ),
-                        Text(
-                          'Metal',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFFD1A985),
-                        size: 30.0,
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  color: Color(0xFFE8CAAB),
-                  elevation: 4.0,
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.auto_awesome,
-                      color: Color(0xFF4E4A4A),
-                    ),
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Iron rod',
-                          style: TextStyle(fontFamily: 'Nunito'),
-                        ),
-                        Text(
-                          'Metal',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFFD1A985),
-                        size: 30.0,
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  color: Color(0xFFE8CAAB),
-                  elevation: 4.0,
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.auto_awesome,
-                      color: Color(0xFF4E4A4A),
-                    ),
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Iron rod',
-                          style: TextStyle(fontFamily: 'Nunito'),
-                        ),
-                        Text(
-                          'Metal',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Color(0xFFD1A985),
-                        size: 30.0,
-                      ),
-                    ),
-                  ),
-                ),
-                Card(
-                  color: Color(0xFFE8CAAB),
-                  elevation: 4.0,
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.auto_awesome,
-                      color: Color(0xFF4E4A4A),
-                    ),
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Iron rod',
-                          style: TextStyle(fontFamily: 'Nunito'),
-                        ),
-                        Text(
-                          'Metal',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    // trailing: GestureDetector(
-                    //   child: Icon(
-                    //     Icons.remove_circle,
-                    //     color: Color(0xFFD1A985),
-                    //     size: 30.0,
-                    //   ),
-                    // ),
-                  ),
-                ),
-              ],
+              ),
             ),
+            ),
+            // child: ListView(
+            //   children: [
+
+                // Card(
+                //   color: Color(0xFFE8CAAB),
+                //   elevation: 4.0,
+                //   child: ListTile(
+                //     leading: Icon(
+                //       Icons.auto_awesome,
+                //       color: Color(0xFF4E4A4A),
+                //     ),
+                //     title: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           'Plastic Bottle',
+                //           style: TextStyle(fontFamily: 'Nunito'),
+                //         ),
+                //         Text(
+                //           'Plastic',
+                //           style: TextStyle(
+                //             fontFamily: 'Nunito',
+                //             fontSize: 12.0,
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //     // trailing: GestureDetector(
+                //     //   child: Icon(
+                //     //     Icons.remove_circle,
+                //     //     color: Color(0xFFD1A985),
+                //     //     size: 30.0,
+                //     //   ),
+                //     // ),
+                //   ),
+                // ),
+                // Card(
+                //   color: Color(0xFFE8CAAB),
+                //   elevation: 4.0,
+                //   child: ListTile(
+                //     leading: Icon(
+                //       Icons.auto_awesome,
+                //       color: Color(0xFF4E4A4A),
+                //     ),
+                //     title: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           'Notebook',
+                //           style: TextStyle(fontFamily: 'Nunito'),
+                //         ),
+                //         Text(
+                //           'Paper',
+                //           style: TextStyle(
+                //             fontFamily: 'Nunito',
+                //             fontSize: 12.0,
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //     // trailing: GestureDetector(
+                //     //   child: Icon(
+                //     //     Icons.remove_circle,
+                //     //     color: Color(0xFFD1A985),
+                //     //     size: 30.0,
+                //     //   ),
+                //     // ),
+                //   ),
+                // ),
+                // Card(
+                //   color: Color(0xFFE8CAAB),
+                //   elevation: 4.0,
+                //   child: ListTile(
+                //     leading: Icon(
+                //       Icons.auto_awesome,
+                //       color: Color(0xFF4E4A4A),
+                //     ),
+                //     title: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           'Iron rod',
+                //           style: TextStyle(fontFamily: 'Nunito'),
+                //         ),
+                //         Text(
+                //           'Metal',
+                //           style: TextStyle(
+                //             fontFamily: 'Nunito',
+                //             fontSize: 12.0,
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //     // trailing: GestureDetector(
+                //     //   child: Icon(
+                //     //     Icons.remove_circle,
+                //     //     color: Color(0xFFD1A985),
+                //     //     size: 30.0,
+                //     //   ),
+                //     // ),
+                //   ),
+                // ),
+                // Card(
+                //   color: Color(0xFFE8CAAB),
+                //   elevation: 4.0,
+                //   child: ListTile(
+                //     leading: Icon(
+                //       Icons.auto_awesome,
+                //       color: Color(0xFF4E4A4A),
+                //     ),
+                //     title: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           'Iron stand',
+                //           style: TextStyle(fontFamily: 'Nunito'),
+                //         ),
+                //         Text(
+                //           'Metal',
+                //           style: TextStyle(
+                //             fontFamily: 'Nunito',
+                //             fontSize: 12.0,
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //     // trailing: GestureDetector(
+                //     //   child: Icon(
+                //     //     Icons.remove_circle,
+                //     //     color: Color(0xFFD1A985),
+                //     //     size: 30.0,
+                //     //   ),
+                //     // ),
+                //   ),
+                // ),
+                // Card(
+                //   color: Color(0xFFE8CAAB),
+                //   elevation: 4.0,
+                //   child: ListTile(
+                //     leading: Icon(
+                //       Icons.auto_awesome,
+                //       color: Color(0xFF4E4A4A),
+                //     ),
+                //     title: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           'Iron rod',
+                //           style: TextStyle(fontFamily: 'Nunito'),
+                //         ),
+                //         Text(
+                //           'Metal',
+                //           style: TextStyle(
+                //             fontFamily: 'Nunito',
+                //             fontSize: 12.0,
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //     // trailing: GestureDetector(
+                //     //   child: Icon(
+                //     //     Icons.remove_circle,
+                //     //     color: Color(0xFFD1A985),
+                //     //     size: 30.0,
+                //     //   ),
+                //     // ),
+                //   ),
+                // ),
+                // Card(
+                //   color: Color(0xFFE8CAAB),
+                //   elevation: 4.0,
+                //   child: ListTile(
+                //     leading: Icon(
+                //       Icons.auto_awesome,
+                //       color: Color(0xFF4E4A4A),
+                //     ),
+                //     title: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           'Iron rod',
+                //           style: TextStyle(fontFamily: 'Nunito'),
+                //         ),
+                //         Text(
+                //           'Metal',
+                //           style: TextStyle(
+                //             fontFamily: 'Nunito',
+                //             fontSize: 12.0,
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //     // trailing: GestureDetector(
+                //     //   child: Icon(
+                //     //     Icons.remove_circle,
+                //     //     color: Color(0xFFD1A985),
+                //     //     size: 30.0,
+                //     //   ),
+                //     // ),
+                //   ),
+                // ),
+                // Card(
+                //   color: Color(0xFFE8CAAB),
+                //   elevation: 4.0,
+                //   child: ListTile(
+                //     leading: Icon(
+                //       Icons.auto_awesome,
+                //       color: Color(0xFF4E4A4A),
+                //     ),
+                //     title: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           'Iron rod',
+                //           style: TextStyle(fontFamily: 'Nunito'),
+                //         ),
+                //         Text(
+                //           'Metal',
+                //           style: TextStyle(
+                //             fontFamily: 'Nunito',
+                //             fontSize: 12.0,
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //     // trailing: GestureDetector(
+                //     //   child: Icon(
+                //     //     Icons.remove_circle,
+                //     //     color: Color(0xFFD1A985),
+                //     //     size: 30.0,
+                //     //   ),
+                //     // ),
+                //   ),
+                // ),
+                // Card(
+                //   color: Color(0xFFE8CAAB),
+                //   elevation: 4.0,
+                //   child: ListTile(
+                //     leading: Icon(
+                //       Icons.auto_awesome,
+                //       color: Color(0xFF4E4A4A),
+                //     ),
+                //     title: Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(
+                //           'Iron rod',
+                //           style: TextStyle(fontFamily: 'Nunito'),
+                //         ),
+                //         Text(
+                //           'Metal',
+                //           style: TextStyle(
+                //             fontFamily: 'Nunito',
+                //             fontSize: 12.0,
+                //           ),
+                //         ),
+                //       ],
+                //     ),
+                //     // trailing: GestureDetector(
+                //     //   child: Icon(
+                //     //     Icons.remove_circle,
+                //     //     color: Color(0xFFD1A985),
+                //     //     size: 30.0,
+                //     //   ),
+                //     // ),
+                //   ),
+                // ),
+             // ],
+          //  ),
           ),
         ),
       ),
     );
   }
 }
+
 
 class CartHeader extends StatelessWidget {
   const CartHeader({

@@ -1,12 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 import 'package:viraan/home_screen.dart';
 import 'home_screen.dart';
 import 'package:viraan/Cart.dart';
 import 'package:viraan/Rewards.dart';
-import 'package:viraan/SellWaste.dart';
+import 'package:viraan/models/CartModel.dart';
+
+
+class Waste {
+  String waste_name;
+  String waste_type;
+  Waste(this.waste_name, this.waste_type);
+}
+
 
 class SellWasteBody extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     final loginButon = Material(
@@ -36,6 +47,7 @@ class SellWasteBody extends StatelessWidget {
       ),
     );
     Size size = MediaQuery.of(context).size;
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -47,6 +59,14 @@ class SellWasteBody extends StatelessWidget {
           //TODO: text field
           // TODO: Remove -
           //TODO: next wala person
+
+
+          SizedBox(
+            height: 20.0,
+          ),
+
+         // waste = ;
+          AddToCart(waste : Waste("Something","Plastic")),
 
           SizedBox(
             height: 20.0,
@@ -106,6 +126,7 @@ class SellWasteBody extends StatelessWidget {
     );
   }
 }
+
 
 class TagsRow extends StatelessWidget {
   const TagsRow({
@@ -250,6 +271,7 @@ class TagsRow extends StatelessWidget {
 //     );
 //   }
 // }
+
 class DropDownMenu extends StatefulWidget {
   @override
   _DropDownMenuState createState() => _DropDownMenuState();
@@ -279,9 +301,10 @@ class _DropDownMenuState extends State<DropDownMenu> {
                 value: value,
                 child: Row(
                   children:<Widget> [
-                    Text(value),
-                  ],
 
+
+                  ],
+                  // Text(value),
                 ),);
             }).toList(),
             hint: Text(
@@ -295,16 +318,13 @@ class _DropDownMenuState extends State<DropDownMenu> {
             onChanged: (String value) {
               setState(() {
                 _chosenValue = value;
-                return showDialog(context: context,
-                    builder: (BuildContext context){
-                    return alertDialog();
-                    });
               });
             },
           ),
         );
   }
 }
+
 class SellWasteHeader extends StatelessWidget {
   const SellWasteHeader({
     Key key,
@@ -370,32 +390,35 @@ class SellWasteHeader extends StatelessWidget {
     );
   }
 }
-class alertDialog extends StatelessWidget {
+
+
+
+
+class AddToCart extends StatelessWidget {
+  var waste;
+  AddToCart({
+    Key key, this.waste,
+  }) : super(key: key);
+
+  final CartModel _cart = CartModel();
+
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text("Tell us what it is called?"),
-      content: TextField(
-        decoration: InputDecoration(
-            // border: InputBorder.none,
-            // labelText: 'Enter Name',
-            // hintText: 'Enter Your Name'
+
+    return ElevatedButton(
+      onPressed: (){
+          CartModel().addToCart(waste);
+      },
+
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(
+          Vx.indigo500,
+        ),
+        shape: MaterialStateProperty.all(
+          StadiumBorder(),
         ),
       ),
-      actions: [
-        FlatButton(
-          child: Text('Add to Cart'),
-          color: Colors.blueAccent,
-          textColor: Colors.white,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SellWaste()),
-            );
-          },
-        ),
-
-      ],
+      child: "Add to Cart".text.make(),
     );
   }
 }
