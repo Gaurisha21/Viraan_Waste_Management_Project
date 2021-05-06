@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFEED8C1),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Cart(),
+      home: Login(),
     );
   }
 }

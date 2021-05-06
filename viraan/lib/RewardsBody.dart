@@ -56,7 +56,7 @@ class RewardsBody extends StatelessWidget {
                               ),
                               Spacer(),
                               IconButton(
-                                icon: Image.asset('assets/images/Coins.png'),
+                                icon: Image.asset('assets/images/money 1.png'),
                               ),
                             ],
                           ),
