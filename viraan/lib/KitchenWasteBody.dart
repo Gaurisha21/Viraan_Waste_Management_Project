@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:viraan/WatchYourWaste.dart';
 class KitchenWasteBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -33,11 +33,28 @@ class KitchenWasteBody extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.centerLeft,
                   height: 400.0,
-                  child: Icon(Icons.arrow_back_ios_outlined),
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back_ios_outlined),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => WatchYourWaste()),
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
           ),
+        ),
+        Column(
+          children: [
+            Image.asset('assets/images/Kitchen Waste Label.png'),
+            Text(
+                'dummy'
+            ),
+          ],
         ),
       ],
     );

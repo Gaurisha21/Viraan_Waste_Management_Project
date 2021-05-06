@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:viraan/Rewards.dart';
+import 'package:viraan/SellWaste.dart';
 
 import 'Cart.dart';
 import 'home_screen.dart';
@@ -37,7 +38,16 @@ class EmptyCartBody extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.centerLeft,
                     height: 480.0,
-                    child: Icon(Icons.arrow_back_ios_outlined),
+                    child: IconButton(
+                      icon: Icon(Icons.arrow_back_ios_outlined),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SellWaste()),
+                        );
+                      },
+                    ),
                   ),
                 ),
                 Positioned(
@@ -60,6 +70,7 @@ class EmptyCartBody extends StatelessWidget {
                                 height: 10.0,
                               ),
                               Text(
+
                                 'Your Cart is empty',
                                 style: TextStyle(
                                   color: Color(0xFF4E4A4A),

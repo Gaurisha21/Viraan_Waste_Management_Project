@@ -37,8 +37,16 @@ class CheckoutBody extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.centerLeft,
                     height: 480.0,
-                    child: Icon(
-                      Icons.arrow_back_ios_outlined,
+
+                    child: IconButton(
+                      icon: Icon(Icons.arrow_back_ios_outlined,),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomeScreen()),
+                        );
+                      },
                     ),
                   ),
                 ),

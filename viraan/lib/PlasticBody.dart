@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:viraan/WatchYourWaste.dart';
 
 class PlasticBody extends StatelessWidget {
   @override
@@ -33,11 +34,28 @@ class PlasticBody extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.centerLeft,
                   height: 480.0,
-                  child: Icon(Icons.arrow_back_ios_outlined),
+                  child:IconButton(
+                    icon: Icon(Icons.arrow_back_ios_outlined),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => WatchYourWaste()),
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
           ),
+        ),
+        Column(
+          children: [
+            Image.asset('assets/images/Plastic Label.png'),
+            Text(
+                'dummy'
+            ),
+          ],
         ),
       ],
     );

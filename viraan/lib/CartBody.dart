@@ -493,6 +493,8 @@ class CartHeader extends StatelessWidget {
                         ),
                         Spacer(),
                         // IconButton(Icons.arrow_forward_ios),
+
+
                         IconButton(
                           icon: Icon(Icons.arrow_forward_ios),
                           onPressed: () {
