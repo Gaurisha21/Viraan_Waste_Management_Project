@@ -12,15 +12,18 @@ class Body extends StatelessWidget {
         children: [
           Image.asset("assets/images/logo.png"),
           SizedBox(
-            height: 10.0,
+            height: 20.0,
           ),
           Image.asset("assets/images/VIRAAN.png"),
-          // SizedBox(
-          //   height: 10.0,
-          // ),
+          SizedBox(
+            height: 20.0,
+          ),
           Image.asset(
             "assets/images/tree.png",
             height: 450.0,
+          ),
+          SizedBox(
+            height: 20.0,
           ),
           Container(
             padding: EdgeInsets.only(left: 50.0, right: 50.0),
@@ -34,7 +37,7 @@ class Body extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) =>HomeScreen()),
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
                     );
                   },
                 ),
@@ -57,7 +60,7 @@ class Body extends StatelessWidget {
                     "assets/icons/Vector.png",
                     color: Color(0xFF4E4A4A),
                   ),
-                  onPressed:() {
+                  onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Rewards()),

@@ -15,6 +15,7 @@ import 'Paper.dart';
 import 'Cart.dart';
 import 'Rewards.dart';
 import 'CheckoutPage.dart';
+import 'Mission.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFEED8C1),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Checkout(),
+      home: Cart(),
     );
   }
 }

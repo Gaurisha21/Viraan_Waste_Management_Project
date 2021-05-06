@@ -50,7 +50,7 @@ class EmptyCartBody extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       height: 100.0,
                       child: Padding(
-                          padding: const EdgeInsets.only(left: 90.0),
+                          padding: const EdgeInsets.only(left: 60.0),
                           child: Column(
                             children: [
                               Image.asset(
@@ -92,7 +92,7 @@ class EmptyCartBody extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 180.0,
+            height: 160.0,
           ),
           Container(
             padding: EdgeInsets.only(left: 50.0, right: 50.0),
@@ -129,7 +129,7 @@ class EmptyCartBody extends StatelessWidget {
                     "assets/icons/Vector.png",
                     color: Color(0xFF4E4A4A),
                   ),
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Rewards()),

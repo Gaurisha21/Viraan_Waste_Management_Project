@@ -57,7 +57,10 @@ class SignUpBody extends StatelessWidget {
             SizedBox(
               height: 25.0,
             ),
-            signupWithGoogle,
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+              child: signupWithGoogle,
+            ),
           ],
         ),
       ),

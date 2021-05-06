@@ -8,17 +8,13 @@ import 'package:viraan/Rewards.dart';
 import 'package:viraan/models/CartModel.dart';
 import 'package:viraan/SellWaste.dart';
 
-
 class Waste {
   String waste_name;
   String waste_type;
   Waste(this.waste_name, this.waste_type);
 }
 
-
 class SellWasteBody extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     final loginButon = Material(
@@ -56,17 +52,19 @@ class SellWasteBody extends StatelessWidget {
           SizedBox(
             height: 30.0,
           ),
-          DropDownMenu(),// TODO: add drop down menu (5)
+          DropDownMenu(), // TODO: add drop down menu (5)
           //TODO: text field
           // TODO: Remove -
           //TODO: next wala person
 
-
           SizedBox(
-            height: 20.0,
+            height: 50.0,
           ),
 
-          loginButon,
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: loginButon,
+          ),
           SizedBox(
             height: 40.0,
           ),
@@ -105,7 +103,7 @@ class SellWasteBody extends StatelessWidget {
                     "assets/icons/Vector.png",
                     color: Color(0xFF4E4A4A),
                   ),
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Rewards()),
@@ -120,7 +118,6 @@ class SellWasteBody extends StatelessWidget {
     );
   }
 }
-
 
 class TagsRow extends StatelessWidget {
   const TagsRow({
@@ -277,51 +274,53 @@ class _DropDownMenuState extends State<DropDownMenu> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-          padding: const EdgeInsets.all(0.0),
-          child: DropdownButton<String>(
-            value: _chosenValue,
-            //elevation: 5,
-            style: TextStyle( color: Color(0xFF4E4A4A),
-             fontFamily: 'Nunito',),
+      padding: const EdgeInsets.all(0.0),
+      child: DropdownButton<String>(
+        value: _chosenValue,
+        //elevation: 5,
+        style: TextStyle(
+          color: Color(0xFF4E4A4A),
+          fontFamily: 'Nunito',
+        ),
 
-            items: <String>[
-              'Plastic',
-              'Paper',
-              'Glass',
-              'Kitchen Waste',
-              'Metal',
-            ].map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Row(
-                  children:<Widget> [
-                    Text(value),
-                  ],
-
-                ),);
-            }).toList(),
-            hint: Text(
-              'Select your Waste',
-              style: TextStyle(
-                  color: Color(0xFF4E4A4A),
-                  fontFamily: 'Nunito',
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.normal),
+        items: <String>[
+          'Plastic',
+          'Paper',
+          'Glass',
+          'Kitchen Waste',
+          'Metal',
+        ].map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Row(
+              children: <Widget>[
+                Text(value),
+              ],
             ),
-            onChanged: (String value) {
-             // setState(() {
-                _chosenValue = value;
-                return showDialog(context: context,
-                    builder: (BuildContext context){
-                      return alertDialog(wasteType : value);
-               // });
+          );
+        }).toList(),
+        hint: Text(
+          'Select your Waste',
+          style: TextStyle(
+              color: Color(0xFF4E4A4A),
+              fontFamily: 'Nunito',
+              fontSize: 20.0,
+              fontWeight: FontWeight.normal),
+        ),
+        onChanged: (String value) {
+          // setState(() {
+          _chosenValue = value;
+          return showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return alertDialog(wasteType: value);
+                // });
               });
-            },
-          ),
-        );
+        },
+      ),
+    );
   }
 }
-
 
 class SellWasteHeader extends StatelessWidget {
   const SellWasteHeader({
@@ -371,9 +370,9 @@ class SellWasteHeader extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8.0, right: 26.0),
               child: Container(
                 alignment: Alignment.centerLeft,
-                height: 200.0,
+                height: 270.0,
                 child: Text(
-                  'Selling your waste creates employment, feeds a hungry kid, gives kids access to education and saves the environment. You also earn coins which can be redeemed to claim rewards. Sell your waste today and leave an indelible mark on the world,',
+                  'Selling your waste creates employment, feeds a hungry kid, gives kids access to education and saves the environment. You also earn coins which can be redeemed to claim rewards. Sell your waste today and leave an indelible mark on the world.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.black,
@@ -389,8 +388,6 @@ class SellWasteHeader extends StatelessWidget {
   }
 }
 
-
-
 class alertDialog extends StatelessWidget {
   var wasteType;
   alertDialog({
@@ -398,30 +395,27 @@ class alertDialog extends StatelessWidget {
     @required this.wasteType,
   }) : super(key: key);
 
-
   TextEditingController controller = new TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text("Tell us what it is called?"),
       content: TextField(
-      cursorColor: Color(0xFF8A8787),
-    decoration: new InputDecoration(
-    enabledBorder: UnderlineInputBorder(
-    borderSide: BorderSide(
-    color: Color(0xFF8A8787),
-    ),
-    ),
-    focusedBorder: UnderlineInputBorder(
-    borderSide: BorderSide(
-    color: Color(0xFF8A8787),
-    ),
-    ),
-    ),
+        cursorColor: Color(0xFF8A8787),
+        decoration: new InputDecoration(
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Color(0xFF8A8787),
+            ),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Color(0xFF8A8787),
+            ),
+          ),
+        ),
         controller: controller,
-
       ),
       actions: [
         FlatButton(
@@ -430,7 +424,7 @@ class alertDialog extends StatelessWidget {
           textColor: Colors.white,
           onPressed: () {
             String wasteName = controller.text;
-            var waste = Waste(wasteName , wasteType);
+            var waste = Waste(wasteName, wasteType);
 
             CartModel().addToCart(waste);
 
@@ -440,14 +434,7 @@ class alertDialog extends StatelessWidget {
             );
           },
         ),
-
       ],
     );
   }
 }
-
-
-
-
-
-

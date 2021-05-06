@@ -3,6 +3,7 @@ import 'package:viraan/WatchYourWaste.dart';
 import 'package:viraan/SellWaste.dart';
 import 'package:viraan/Rewards.dart';
 import 'package:viraan/Cart.dart';
+import 'package:viraan/Mission.dart';
 
 class NavDrawer extends StatelessWidget {
   @override
@@ -36,40 +37,50 @@ class NavDrawer extends StatelessWidget {
             leading: Icon(Icons.article),
             title: Text('Scan Waste'),
             onTap: () => {
-            Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => WatchYourWaste()),
-            )
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => WatchYourWaste()),
+              )
             },
           ),
           ListTile(
             leading: Icon(Icons.auto_delete_sharp),
             title: Text('Sell Waste'),
             onTap: () => {
-            Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SellWaste()),
-            )
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SellWaste()),
+              )
             },
           ),
           ListTile(
             leading: Icon(Icons.auto_awesome),
             title: Text('Rewards'),
             onTap: () => {
-            Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Rewards()),
-            )
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Rewards()),
+              )
             },
           ),
           ListTile(
             leading: Icon(Icons.shopping_cart),
             title: Text('Cart'),
             onTap: () => {
-            Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Cart()),
-            )
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Cart()),
+              )
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.message),
+            title: Text('Mission'),
+            onTap: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Mission()),
+              )
             },
           ),
         ],

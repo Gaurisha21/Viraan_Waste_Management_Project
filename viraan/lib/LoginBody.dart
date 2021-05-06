@@ -66,16 +66,17 @@ class LoginBody extends StatelessWidget {
           ),
           buildPasswordContainer(),
           SizedBox(
-            height: 30.0,
+            height: 50.0,
           ),
-          loginButon,
-          SizedBox(
-            height: 25.0,
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: loginButon,
           ),
-          // WithGoogle,login
           SizedBox(
             height: 15.0,
           ),
+          // WithGoogle,login
+
           TextButton(
             child: Text(
               'Don\'t have an account? Sign Up',

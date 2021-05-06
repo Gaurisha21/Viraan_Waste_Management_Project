@@ -37,7 +37,9 @@ class CheckoutBody extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.centerLeft,
                     height: 480.0,
-                    child: Icon(Icons.arrow_back_ios_outlined),
+                    child: Icon(
+                      Icons.arrow_back_ios_outlined,
+                    ),
                   ),
                 ),
                 Positioned(
@@ -50,7 +52,7 @@ class CheckoutBody extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       height: 100.0,
                       child: Padding(
-                          padding: const EdgeInsets.only(left: 90.0),
+                          padding: const EdgeInsets.only(left: 30.0),
                           child: Column(
                             children: [
                               Image.asset(
@@ -60,7 +62,7 @@ class CheckoutBody extends StatelessWidget {
                                 height: 10.0,
                               ),
                               Text(
-                                'Yaay! Your order is placed!',//TODO: align
+                                'Yaay! Your order is placed!', //TODO: align
                                 style: TextStyle(
                                   color: Color(0xFF4E4A4A),
                                   fontFamily: 'Nunito',
@@ -80,7 +82,7 @@ class CheckoutBody extends StatelessWidget {
             padding: const EdgeInsets.only(left: 20.0, right: 20.0),
             child: Container(
               child: Text(
-                'Go to Rewards and see how many coins you earned by selling your waste',
+                'Go to Rewards and see how many coins you\'ve earned by selling your waste.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFF4E4A4A),
@@ -92,7 +94,7 @@ class CheckoutBody extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 180.0,
+            height: 150.0,
           ),
           Container(
             padding: EdgeInsets.only(left: 50.0, right: 50.0),
@@ -129,7 +131,7 @@ class CheckoutBody extends StatelessWidget {
                     "assets/icons/Vector.png",
                     color: Color(0xFF4E4A4A),
                   ),
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Rewards()),
