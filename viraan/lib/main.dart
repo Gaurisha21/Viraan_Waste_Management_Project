@@ -14,6 +14,7 @@ import 'KitchenWaste.dart';
 import 'Paper.dart';
 import 'Cart.dart';
 import 'Rewards.dart';
+import 'CheckoutPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFFEED8C1),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Login(),
+      home: Checkout(),
     );
   }
 }

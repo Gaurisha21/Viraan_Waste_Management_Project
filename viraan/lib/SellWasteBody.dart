@@ -6,6 +6,7 @@ import 'home_screen.dart';
 import 'package:viraan/Cart.dart';
 import 'package:viraan/Rewards.dart';
 import 'package:viraan/models/CartModel.dart';
+import 'package:viraan/SellWaste.dart';
 
 
 class Waste {
@@ -65,13 +66,6 @@ class SellWasteBody extends StatelessWidget {
             height: 20.0,
           ),
 
-         // waste = ;
-          AddToCart(waste : Waste("Something","Plastic")),
-
-          SizedBox(
-            height: 20.0,
-          ),
-          //
           loginButon,
           SizedBox(
             height: 40.0,
@@ -301,10 +295,9 @@ class _DropDownMenuState extends State<DropDownMenu> {
                 value: value,
                 child: Row(
                   children:<Widget> [
-
-
+                    Text(value),
                   ],
-                   //Text(value),
+
                 ),);
             }).toList(),
             hint: Text(
@@ -316,14 +309,19 @@ class _DropDownMenuState extends State<DropDownMenu> {
                   fontWeight: FontWeight.normal),
             ),
             onChanged: (String value) {
-              setState(() {
+             // setState(() {
                 _chosenValue = value;
+                return showDialog(context: context,
+                    builder: (BuildContext context){
+                      return alertDialog(wasteType : value);
+               // });
               });
             },
           ),
         );
   }
 }
+
 
 class SellWasteHeader extends StatelessWidget {
   const SellWasteHeader({
@@ -393,32 +391,63 @@ class SellWasteHeader extends StatelessWidget {
 
 
 
-
-class AddToCart extends StatelessWidget {
-  var waste;
-  AddToCart({
-    Key key, this.waste,
+class alertDialog extends StatelessWidget {
+  var wasteType;
+  alertDialog({
+    Key key,
+    @required this.wasteType,
   }) : super(key: key);
 
-  final CartModel _cart = CartModel();
+
+  TextEditingController controller = new TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text("Tell us what it is called?"),
+      content: TextField(
+      cursorColor: Color(0xFF8A8787),
+    decoration: new InputDecoration(
+    enabledBorder: UnderlineInputBorder(
+    borderSide: BorderSide(
+    color: Color(0xFF8A8787),
+    ),
+    ),
+    focusedBorder: UnderlineInputBorder(
+    borderSide: BorderSide(
+    color: Color(0xFF8A8787),
+    ),
+    ),
+    ),
+        controller: controller,
 
-    return ElevatedButton(
-      onPressed: (){
-          CartModel().addToCart(waste);
-      },
-
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(
-          Vx.indigo500,
-        ),
-        shape: MaterialStateProperty.all(
-          StadiumBorder(),
-        ),
       ),
-      child: "Add to Cart".text.make(),
+      actions: [
+        FlatButton(
+          child: Text('Add to Cart'),
+          color: Color(0xFF3CB371),
+          textColor: Colors.white,
+          onPressed: () {
+            String wasteName = controller.text;
+            var waste = Waste(wasteName , wasteType);
+
+            CartModel().addToCart(waste);
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SellWaste()),
+            );
+          },
+        ),
+
+      ],
     );
   }
 }
+
+
+
+
+
+

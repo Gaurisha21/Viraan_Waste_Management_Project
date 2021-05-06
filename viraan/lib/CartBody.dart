@@ -9,6 +9,7 @@ import 'package:viraan/SellWaste.dart';
 import 'package:flutter_cart/flutter_cart.dart';
 import 'package:viraan/models/CartModel.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'CheckoutPage.dart';
 
 import 'EmptyCart.dart';
 
@@ -115,10 +116,11 @@ class _CartItemsState extends State<CartItems> {
             color: Color(0xFFD1A985),
 
 
-            child: (_cart.cart.cartItem.length == 0) ? Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => EmptyCart()),
-            ) : ListView.builder(
+            // child: (_cart.cart.cartItem.length == 0) ? Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => EmptyCart()),
+            // )
+            child : ListView.builder(
               itemCount: _cart.cart.cartItem.length,
               itemBuilder: (context, index) => Card(
               color: Color(0xFFE8CAAB),
@@ -152,9 +154,8 @@ class _CartItemsState extends State<CartItems> {
                   ),
                   onTap:  (){
                     _cart.cart.decrementItemFromCart(index);
-                    setState(() {
-
-                    });
+                    setState(() {});
+                    //setState(() {});
                   },
                 ),
               ),
@@ -500,7 +501,7 @@ class CartHeader extends StatelessWidget {
                           onPressed:() {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => SellWaste()),
+                              MaterialPageRoute(builder: (context) => Checkout()),
                             );
                           },
                         ),

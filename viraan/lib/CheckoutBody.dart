@@ -4,7 +4,7 @@ import 'package:viraan/Rewards.dart';
 import 'Cart.dart';
 import 'home_screen.dart';
 
-class EmptyCartBody extends StatelessWidget {
+class CheckoutBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -60,7 +60,7 @@ class EmptyCartBody extends StatelessWidget {
                                 height: 10.0,
                               ),
                               Text(
-                                'Your Cart is empty',
+                                'Yaay! Your order is placed!',//TODO: align
                                 style: TextStyle(
                                   color: Color(0xFF4E4A4A),
                                   fontFamily: 'Nunito',
@@ -80,7 +80,7 @@ class EmptyCartBody extends StatelessWidget {
             padding: const EdgeInsets.only(left: 20.0, right: 20.0),
             child: Container(
               child: Text(
-                'Upload your waste on "Watch your Waste" screen and sell your waste to change lives.',
+                'Go to Rewards and see how many coins you earned by selling your waste',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFF4E4A4A),
