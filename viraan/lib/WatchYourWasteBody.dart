@@ -216,7 +216,7 @@ class _WatchYourWasteHeaderState extends State<WatchYourWasteHeader> {
         MaterialPageRoute(builder: (context) => Metal()),
       );
     }
-    else if( material == "glass")
+    else if( material == "white-glass")
     {
       Navigator.push(
         context,
