@@ -445,6 +445,7 @@ class CartHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final CartModel _cart = CartModel();
     return Container(
       height: size.height * 0.4,
       child: Stack(
@@ -494,15 +495,22 @@ class CartHeader extends StatelessWidget {
                         Spacer(),
                         // IconButton(Icons.arrow_forward_ios),
 
-
                         IconButton(
                           icon: Icon(Icons.arrow_forward_ios),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Checkout()),
-                            );
+                            if (_cart.cart.cartItem.length == 0) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EmptyCart()),
+                              );
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Checkout()),
+                              );
+                            }
                           },
                         ),
                       ],
