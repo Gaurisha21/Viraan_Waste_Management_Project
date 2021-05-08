@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:viraan/Backend/SignUp.dart';
 import 'home_screen.dart';
 
 class SignUpBody extends StatelessWidget {
@@ -12,11 +13,14 @@ class SignUpBody extends StatelessWidget {
         color: Color(0xFF3CB371),
         minWidth: 380.0,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => HomeScreen()),
-          );
+        onPressed: () async {
+          bool auth= await SignUpBLoC().signUp();
+          if(auth) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );
+          }
         },
         child: Text(
           "Sign Up",
@@ -73,6 +77,7 @@ class SignUpBody extends StatelessWidget {
       child: TextField(
         obscureText: true,
         cursorColor: Color(0xFF8A8787),
+        controller: SignUpBLoC().passwordTextController,
         decoration: new InputDecoration(
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
@@ -105,6 +110,7 @@ class SignUpBody extends StatelessWidget {
       child: TextField(
         keyboardType: TextInputType.emailAddress,
         cursorColor: Color(0xFF8A8787),
+        controller: SignUpBLoC().emailTextController,
         decoration: new InputDecoration(
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
@@ -195,6 +201,7 @@ class AddressContainer extends StatelessWidget {
       margin: EdgeInsets.only(left: 20.0, right: 20.0),
       child: TextField(
         cursorColor: Color(0xFF8A8787),
+        controller: SignUpBLoC().addressTextController,
         decoration: new InputDecoration(
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
@@ -234,6 +241,7 @@ class ConfirmPasswordContainer extends StatelessWidget {
       child: TextField(
         obscureText: true,
         cursorColor: Color(0xFF8A8787),
+        controller: SignUpBLoC().confirmPasswordTextController,
         decoration: new InputDecoration(
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
@@ -271,8 +279,8 @@ class buildNameContainer extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(left: 20.0, right: 20.0),
       child: TextField(
-        obscureText: true,
         cursorColor: Color(0xFF8A8787),
+        controller: SignUpBLoC().nameTextController,
         decoration: new InputDecoration(
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(

@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'WatchYourWaste.dart';
 import 'home_screen.dart';
@@ -17,7 +18,9 @@ import 'Rewards.dart';
 import 'CheckoutPage.dart';
 import 'Mission.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
