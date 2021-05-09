@@ -271,7 +271,7 @@ class buildNameContainer extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(left: 20.0, right: 20.0),
       child: TextField(
-        obscureText: true,
+        obscureText: false,
         cursorColor: Color(0xFF8A8787),
         decoration: new InputDecoration(
           enabledBorder: UnderlineInputBorder(
