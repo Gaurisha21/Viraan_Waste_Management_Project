@@ -23,6 +23,7 @@ if (flutterVersionName == null) {
 
 apply plugin: 'com.android.application'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -36,6 +37,7 @@ android {
         applicationId "com.example.viraan"
         minSdkVersion 19
         targetSdkVersion 29
+        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -47,6 +49,12 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    dependencies {
+        implementation 'com.android.support:multidex:1.0.3'
+        implementation 'com.google.firebase:firebase-analytics'
+    }
+
     aaptOptions {
         noCompress 'tflite'
         noCompress 'lite'
@@ -56,3 +64,5 @@ android {
 flutter {
     source '../..'
 }
+
+apply plugin: 'com.google.gms.google-services'

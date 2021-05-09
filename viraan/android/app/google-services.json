@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "585445097498",
+    "project_id": "wastemanagementsystem-458c1",
+    "storage_bucket": "wastemanagementsystem-458c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585445097498:android:5d5dac1d3a40ec377811a3",
+        "android_client_info": {
+          "package_name": "com.example.viraan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585445097498-e2ngvf31a4mrq07qh465hst5sponsrfd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.viraan",
+            "certificate_hash": "c8b6379d23edeeb8cebd0893ec0fa87a20f67d83"
+          }
+        },
+        {
+          "client_id": "585445097498-hcf54qq663e39slg3nblmg9bkvis9mtg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmJEmV_KAcmc-4DshQyTtrd6cFjG-Y9Z8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585445097498-hcf54qq663e39slg3nblmg9bkvis9mtg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
