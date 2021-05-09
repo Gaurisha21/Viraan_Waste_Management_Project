@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:viraan/Backend/SignUp.dart';
 import 'home_screen.dart';
+import 'package:viraan/Login.dart';
 
 class SignUpBody extends StatelessWidget {
   @override
@@ -40,7 +41,7 @@ class SignUpBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            buildHeaderContainer(size),
+            buildHeaderContainer(size, context),
             buildNameContainer(),
             SizedBox(
               height: 25.0,
@@ -137,7 +138,7 @@ class SignUpBody extends StatelessWidget {
     );
   }
 
-  Container buildHeaderContainer(Size size) {
+  Container buildHeaderContainer(Size size, BuildContext context) {
     return Container(
       height: size.height * 0.5,
       child: Stack(
@@ -165,7 +166,16 @@ class SignUpBody extends StatelessWidget {
             child: Container(
               alignment: Alignment.centerLeft,
               height: 270.0,
-              child: Icon(Icons.arrow_back_ios_outlined),
+              child:  IconButton(
+                icon: Icon(Icons.arrow_back_ios_outlined),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Login()),
+                  );
+                },
+              ),
             ),
           ),
           Positioned(
