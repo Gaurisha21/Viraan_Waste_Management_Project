@@ -35,7 +35,7 @@ class NavDrawer extends StatelessWidget {
           // ),
           ListTile(
             leading: Icon(Icons.article),
-            title: Text('Scan Waste'),
+            title: Text('Watch your Waste'),
             onTap: () => {
               Navigator.push(
                 context,
@@ -45,7 +45,7 @@ class NavDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.auto_delete_sharp),
-            title: Text('Sell Waste'),
+            title: Text('Sell your Waste'),
             onTap: () => {
               Navigator.push(
                 context,
